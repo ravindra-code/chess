@@ -93,20 +93,20 @@ public class Board implements Cloneable{
         int piece = color.equals(Color.WHITE) ? 0 : 7;
 
         for (int i = 0; i < 8; i++) {
-            board[i][pawn] = new Position(i, pawn, new Pawn(Status.ALIVE, color));
+            board[pawn][i] = new Position(i, pawn, new Pawn(Status.ALIVE, color));
         }
 
-        board[0][piece] = new Position(0, piece, new Rook(Status.ALIVE, color));
-        board[7][piece] = new Position(7, piece, new Rook(Status.ALIVE, color));
+        board[piece][0] = new Position(0, piece, new Rook(Status.ALIVE, color));
+        board[piece][7] = new Position(7, piece, new Rook(Status.ALIVE, color));
 
-        board[1][piece] = new Position(1, piece, new Knight(Status.ALIVE, color));
-        board[6][piece] = new Position(6, piece, new Knight(Status.ALIVE, color));
+        board[piece][1] = new Position(1, piece, new Knight(Status.ALIVE, color));
+        board[piece][6] = new Position(6, piece, new Knight(Status.ALIVE, color));
 
-        board[2][piece] = new Position(2, piece, new Bishop(Status.ALIVE, color));
-        board[5][piece] = new Position(5, piece, new Bishop(Status.ALIVE, color));
+        board[piece][2] = new Position(2, piece, new Bishop(Status.ALIVE, color));
+        board[piece][5] = new Position(5, piece, new Bishop(Status.ALIVE, color));
 
-        board[3][piece] = new Position(3, piece, new Queen(Status.ALIVE, color));
-        board[4][piece] = new Position(4, piece, new King(Status.ALIVE, color));
+        board[piece][3] = new Position(3, piece, new Queen(Status.ALIVE, color));
+        board[piece][4] = new Position(4, piece, new King(Status.ALIVE, color));
     }
 
     public synchronized void setPosition( Position position){

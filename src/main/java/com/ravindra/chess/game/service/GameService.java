@@ -33,6 +33,14 @@ public class GameService {
         return getGameLayout(finalLayout);
     }
 
+    @PostMapping(value = "/game/enpassant/{color}/{xSource}/{ySource}/{xDestination}/{yDestination}", consumes = MediaType.APPLICATION_JSON_VALUE,
+            produces = MediaType.APPLICATION_JSON_VALUE)
+    public List<ChessMan> initiateEnPassant(@RequestBody List<ChessMan> layout, @PathVariable String color, @PathVariable int xSource,
+                                           @PathVariable int ySource, @PathVariable int xDestination, @PathVariable int yDestination){
+        // Initiate enpassant strategy.
+        return null;
+    }
+
     @PostMapping(value = "/game/promotion/{color}/{topromote}{xCoordinate}{yCoordinate}", consumes = MediaType.APPLICATION_JSON_VALUE,
             produces = MediaType.APPLICATION_JSON_VALUE)
     public List<ChessMan> initiatePawnPromotion(List<ChessMan> layout, @PathVariable String color, @PathVariable String topromote,
