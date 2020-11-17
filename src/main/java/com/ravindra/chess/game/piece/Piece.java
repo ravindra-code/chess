@@ -11,6 +11,7 @@ public abstract class Piece implements Cloneable{
     public int counter;
     protected Status status;
     protected Color color;
+    public Tile previousPosition;
 
     public Piece() {
         this.status = Status.ALIVE;
@@ -36,6 +37,14 @@ public abstract class Piece implements Cloneable{
             }
         });
         return possibleMoves;
+    }
+
+    public Tile getPreviousPosition() {
+        return previousPosition;
+    }
+
+    public void setPreviousPosition(Tile previousPosition) {
+        this.previousPosition = previousPosition;
     }
 
     public abstract List<Tile> tracePath(Move move);

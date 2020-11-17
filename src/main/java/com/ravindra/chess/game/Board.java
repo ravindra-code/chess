@@ -118,7 +118,7 @@ public class Board implements Cloneable{
         return board[tile.getX()][tile.getY()];
     }
 
-    private void vacate(int x, int y){
+    public void vacate(int x, int y){
         board[x][y] = new Position(x, y, null);
     }
 
@@ -145,6 +145,7 @@ public class Board implements Cloneable{
             setPosition( new Position(move.getDestination().getX(),move.getDestination().getY(), piece));
             vacate(move.getSource().getX(), move.getSource().getY());
             piece.increment();
+            piece.setPreviousPosition(move.getSource());
             return true;
         }else{
             System.out.println("Move not allowed!!!");
