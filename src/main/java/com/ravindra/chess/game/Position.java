@@ -2,13 +2,13 @@ package com.ravindra.chess.game;
 
 import com.ravindra.chess.game.piece.Piece;
 
-public class Position implements Cloneable{
+public class Position implements Cloneable {
 
     private Piece piece;
     private int x;
     private int y;
 
-    public Position(){
+    public Position() {
 
     }
 

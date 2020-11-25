@@ -18,21 +18,21 @@ import java.util.List;
 public class TestQueen {
 
     @Test
-    public void testIsValidMove(){
+    public void testIsValidMove() {
         Board testBoard = new Board();
         List<ChessMan> layout = new ArrayList<>();
-        layout.add(new ChessMan(Color.BLACK.name(), Pieces.QUEEN.name(), 4,4, 5));
-        layout.add(new ChessMan(Color.BLACK.name(), Pieces.ROOK.name(), 5,2, 1));
-        layout.add(new ChessMan(Color.WHITE.name(), Pieces.BISHOP.name(), 6,4, 3));
+        layout.add(new ChessMan(Color.BLACK.name(), Pieces.QUEEN.name(), 4, 4, 5));
+        layout.add(new ChessMan(Color.BLACK.name(), Pieces.ROOK.name(), 5, 2, 1));
+        layout.add(new ChessMan(Color.WHITE.name(), Pieces.BISHOP.name(), 6, 4, 3));
         testBoard.createChessBoard(layout);
-        Assert.assertTrue(new Queen(Status.ALIVE, Color.BLACK).isValidMove(testBoard, new Move(Tile.getTile(4,4), Tile.getTile(4,0))));
-        Assert.assertTrue(new Queen(Status.ALIVE, Color.BLACK).isValidMove(testBoard, new Move(Tile.getTile(4,4), Tile.getTile(6,4))));
-        Assert.assertTrue(new Queen(Status.ALIVE, Color.BLACK).isValidMove(testBoard, new Move(Tile.getTile(4,4), Tile.getTile(5,5))));
+        Assert.assertTrue(new Queen(Status.ALIVE, Color.BLACK).isValidMove(testBoard, new Move(Tile.getTile(4, 4), Tile.getTile(4, 0))));
+        Assert.assertTrue(new Queen(Status.ALIVE, Color.BLACK).isValidMove(testBoard, new Move(Tile.getTile(4, 4), Tile.getTile(6, 4))));
+        Assert.assertTrue(new Queen(Status.ALIVE, Color.BLACK).isValidMove(testBoard, new Move(Tile.getTile(4, 4), Tile.getTile(5, 5))));
 
     }
 
     @Test
-    public void isPathBlocked(){
+    public void isPathBlocked() {
 
     }
 }

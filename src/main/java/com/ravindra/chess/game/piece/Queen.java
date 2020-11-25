@@ -6,8 +6,14 @@ import com.ravindra.chess.game.Move;
 import com.ravindra.chess.game.Tile;
 
 import java.util.List;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
-public class Queen extends Piece{
+public class Queen extends Piece {
+
+    Logger log = LoggerFactory.getLogger(this.getClass().getName());
+
+    Bishop bishop;
 
     public Queen(Status status, Color color) {
         this.status = status;
@@ -16,6 +22,7 @@ public class Queen extends Piece{
 
     @Override
     public boolean isValidMove(Board board, Move move) {
+        log.debug("##Queen:: isValidMove:: Validate if the move is valid..");
         if (move.getDestination().isValid(move.getDestination().getX(), move.getDestination().getY())) {
             if ((Math.abs(move.getDestination().getX() - move.getSource().getX()) ==
                     Math.abs(move.getDestination().getY() - move.getSource().getX())) ||
@@ -23,10 +30,12 @@ public class Queen extends Piece{
                     move.getSource().getY() == move.getDestination().getY()) {
 
                 if (!isPathBlocked(board, move)) {
+                    log.debug("##Queen:: isValidMove:: Valid Move..");
                     return true;
                 }
             }
         }
+        log.debug("##Queen:: isValidMove:: Invalid Move..");
         return false;
     }
 
@@ -37,6 +46,7 @@ public class Queen extends Piece{
 
     @Override
     public boolean isPathBlocked(Board board, Move move) {
+        log.debug("##Queen:: isPathBlocked:: Validate if the path is blocked..");
         return new Bishop().isPathBlocked(board, move) || new Rook().isPathBlocked(board, move);
     }
 

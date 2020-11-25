@@ -13,66 +13,66 @@ import java.util.List;
 public class TestPawn {
 
     @Test
-    public void validateValidMoveForPawn(){
+    public void validateValidMoveForPawn() {
 
         Board testBoard = new Board();
         List<ChessMan> layout = new ArrayList<>();
-        layout.add(new ChessMan(Color.WHITE.name(), Pieces.PAWN.name(), 3,3, 2));
-        layout.add(new ChessMan(Color.BLACK.name(), Pieces.PAWN.name(), 4,4, 2));
+        layout.add(new ChessMan(Color.WHITE.name(), Pieces.PAWN.name(), 3, 3, 2));
+        layout.add(new ChessMan(Color.BLACK.name(), Pieces.PAWN.name(), 4, 4, 2));
         testBoard.createChessBoard(layout);
-        Assert.assertTrue(new Pawn(Status.ALIVE, Color.WHITE).isValidMove(testBoard, new Move(Tile.getTile(3,3),
-                Tile.getTile(3,4))));
-        Assert.assertTrue(new Pawn(Status.ALIVE, Color.WHITE).isValidMove(testBoard, new Move(Tile.getTile(3,3),
-                Tile.getTile(4,4))));
-        Assert.assertFalse(new Pawn(Status.ALIVE, Color.WHITE).isValidMove(testBoard, new Move(Tile.getTile(3,3),
-                Tile.getTile(2,4))));
-        Assert.assertFalse(new Pawn(Status.ALIVE, Color.WHITE).isValidMove(testBoard, new Move(Tile.getTile(3,3),
-                Tile.getTile(3,5))));
+        Assert.assertTrue(new Pawn(Status.ALIVE, Color.WHITE).isValidMove(testBoard, new Move(Tile.getTile(3, 3),
+                Tile.getTile(3, 4))));
+        Assert.assertTrue(new Pawn(Status.ALIVE, Color.WHITE).isValidMove(testBoard, new Move(Tile.getTile(3, 3),
+                Tile.getTile(4, 4))));
+        Assert.assertFalse(new Pawn(Status.ALIVE, Color.WHITE).isValidMove(testBoard, new Move(Tile.getTile(3, 3),
+                Tile.getTile(2, 4))));
+        Assert.assertFalse(new Pawn(Status.ALIVE, Color.WHITE).isValidMove(testBoard, new Move(Tile.getTile(3, 3),
+                Tile.getTile(3, 5))));
 
 
     }
 
     @Test
-    public void checkIfPathIsBlocked(){
+    public void checkIfPathIsBlocked() {
 
         Board testBoard = new Board();
         List<ChessMan> layout = new ArrayList<>();
-        layout.add(new ChessMan(Color.WHITE.name(), Pieces.PAWN.name(), 3,3, 2));
-        layout.add(new ChessMan(Color.WHITE.name(), Pieces.PAWN.name(), 4,4, 2));
+        layout.add(new ChessMan(Color.WHITE.name(), Pieces.PAWN.name(), 3, 3, 2));
+        layout.add(new ChessMan(Color.WHITE.name(), Pieces.PAWN.name(), 4, 4, 2));
         testBoard.createChessBoard(layout);
-        Assert.assertFalse(new Pawn(Status.ALIVE, Color.WHITE).isPathBlocked(testBoard, new Move(Tile.getTile(3,3),
-                Tile.getTile(3,4))));
-        Assert.assertTrue(new Pawn(Status.ALIVE, Color.WHITE).isPathBlocked(testBoard, new Move(Tile.getTile(3,3),
-                Tile.getTile(4,4))));
+        Assert.assertFalse(new Pawn(Status.ALIVE, Color.WHITE).isPathBlocked(testBoard, new Move(Tile.getTile(3, 3),
+                Tile.getTile(3, 4))));
+        Assert.assertTrue(new Pawn(Status.ALIVE, Color.WHITE).isPathBlocked(testBoard, new Move(Tile.getTile(3, 3),
+                Tile.getTile(4, 4))));
 
     }
 
     @Test
-    public void testIfAttackMove(){
+    public void testIfAttackMove() {
         Board testBoard = new Board();
         List<ChessMan> layout = new ArrayList<>();
-        layout.add(new ChessMan(Color.WHITE.name(), Pieces.PAWN.name(), 3,3, 2));
-        layout.add(new ChessMan(Color.BLACK.name(), Pieces.ROOK.name(), 3,4, 1));
-        layout.add(new ChessMan(Color.BLACK.name(), Pieces.PAWN.name(), 4,4, 2));
+        layout.add(new ChessMan(Color.WHITE.name(), Pieces.PAWN.name(), 3, 3, 2));
+        layout.add(new ChessMan(Color.BLACK.name(), Pieces.ROOK.name(), 3, 4, 1));
+        layout.add(new ChessMan(Color.BLACK.name(), Pieces.PAWN.name(), 4, 4, 2));
         testBoard.createChessBoard(layout);
-        Assert.assertTrue(new Pawn(Status.ALIVE, Color.WHITE).isAttackMove(testBoard, new Move(Tile.getTile(3,3),
-                Tile.getTile(4,4))));
-        Assert.assertFalse(new Pawn(Status.ALIVE, Color.BLACK).isAttackMove(testBoard, new Move(Tile.getTile(3,3),
-                Tile.getTile(2,4))));
-        Assert.assertFalse(new Pawn(Status.ALIVE, Color.BLACK).isAttackMove(testBoard, new Move(Tile.getTile(3,3),
-                Tile.getTile(3,4))));
+        Assert.assertTrue(new Pawn(Status.ALIVE, Color.WHITE).isAttackMove(testBoard, new Move(Tile.getTile(3, 3),
+                Tile.getTile(4, 4))));
+        Assert.assertFalse(new Pawn(Status.ALIVE, Color.BLACK).isAttackMove(testBoard, new Move(Tile.getTile(3, 3),
+                Tile.getTile(2, 4))));
+        Assert.assertFalse(new Pawn(Status.ALIVE, Color.BLACK).isAttackMove(testBoard, new Move(Tile.getTile(3, 3),
+                Tile.getTile(3, 4))));
 
     }
 
     @Test
-    public void testAllPossibleMoves(){
+    public void testAllPossibleMoves() {
         Board testBoard = new Board();
         List<ChessMan> layout = new ArrayList<>();
-        layout.add(new ChessMan(Color.WHITE.name(), Pieces.PAWN.name(), 3,3, 2));
+        layout.add(new ChessMan(Color.WHITE.name(), Pieces.PAWN.name(), 3, 3, 2));
         testBoard.createChessBoard(layout);
         Piece piece = new Pawn(Status.ALIVE, Color.WHITE);
         piece.getAllPossibleMoves(testBoard,
-                new Position(3,3, new Pawn(Status.ALIVE, Color.WHITE)));
+                new Position(3, 3, new Pawn(Status.ALIVE, Color.WHITE)));
 
     }
 }

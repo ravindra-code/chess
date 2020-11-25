@@ -96,21 +96,21 @@ public enum Tile {
         return y;
     }
 
-    public static boolean isValid(int x, int y){
+    public static boolean isValid(int x, int y) {
 
-        List<Tile> tiles =  Arrays.stream(Tile.values())
-                .filter(e->e.getY()==y && e.getX()==x)
+        List<Tile> tiles = Arrays.stream(Tile.values())
+                .filter(e -> e.getY() == y && e.getX() == x)
                 .collect(Collectors.toList());
 
-        return tiles.size()>0?true:false;
+        return tiles.size() > 0 ? true : false;
 
     }
 
-    public static Tile getTile(int x, int y){
+    public static Tile getTile(int x, int y) {
         List<Tile> tiles = Arrays.stream(Tile.values())
-                .filter(e->e.getY()==y && e.getX()==x)
+                .filter(e -> e.getY() == y && e.getX() == x)
                 .collect(Collectors.toList());
-        return tiles!=null?tiles.get(0):null;
+        return tiles != null ? tiles.get(0) : null;
     }
 
 }

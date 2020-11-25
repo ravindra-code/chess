@@ -18,41 +18,41 @@ import java.util.List;
 public class TestEnPassant {
 
     @Test
-    public void isMoveApplicable(){
+    public void isMoveApplicable() {
 
         Board testBoard = new Board();
         List<ChessMan> layout = new ArrayList<>();
-        layout.add(new ChessMan(Color.BLACK.name(), Pieces.PAWN.name(), 3,3, 1));
-        layout.add(new ChessMan(Color.WHITE.name(), Pieces.PAWN.name(), 4,3, 2));
+        layout.add(new ChessMan(Color.BLACK.name(), Pieces.PAWN.name(), 3, 3, 1));
+        layout.add(new ChessMan(Color.WHITE.name(), Pieces.PAWN.name(), 4, 3, 2));
         testBoard.createChessBoard(layout);
         Pawn attacker = new Pawn(Status.ALIVE, Color.BLACK);
-        attacker.setPreviousPosition(Tile.getTile(3,4));
+        attacker.setPreviousPosition(Tile.getTile(3, 4));
         Pawn attacked = new Pawn(Status.ALIVE, Color.WHITE);
-        attacked.setPreviousPosition(Tile.getTile(4,1));
-        Assert.assertTrue(new EnPassant().isMoveApplicable(testBoard, new Move(Tile.getTile(3,3), Tile.getTile(4,2)),
+        attacked.setPreviousPosition(Tile.getTile(4, 1));
+        Assert.assertTrue(new EnPassant().isMoveApplicable(testBoard, new Move(Tile.getTile(3, 3), Tile.getTile(4, 2)),
                 attacker, attacked));
-        layout.add(new ChessMan(Color.BLACK.name(), Pieces.ROOK.name(), 4,2, 2));
+        layout.add(new ChessMan(Color.BLACK.name(), Pieces.ROOK.name(), 4, 2, 2));
         testBoard.createChessBoard(layout);
-        Assert.assertFalse(new EnPassant().isMoveApplicable(testBoard, new Move(Tile.getTile(3,3), Tile.getTile(4,2)),
+        Assert.assertFalse(new EnPassant().isMoveApplicable(testBoard, new Move(Tile.getTile(3, 3), Tile.getTile(4, 2)),
                 attacker, attacked));
 
     }
 
     @Test
-    public void testInitiateStrategy(){
+    public void testInitiateStrategy() {
         Board testBoard = new Board();
         List<ChessMan> layout = new ArrayList<>();
-        layout.add(new ChessMan(Color.BLACK.name(), Pieces.PAWN.name(), 3,3, 1));
-        layout.add(new ChessMan(Color.WHITE.name(), Pieces.PAWN.name(), 4,3, 2));
+        layout.add(new ChessMan(Color.BLACK.name(), Pieces.PAWN.name(), 3, 3, 1));
+        layout.add(new ChessMan(Color.WHITE.name(), Pieces.PAWN.name(), 4, 3, 2));
         testBoard.createChessBoard(layout);
         Pawn attacker = new Pawn(Status.ALIVE, Color.BLACK);
-        attacker.setPreviousPosition(Tile.getTile(3,4));
+        attacker.setPreviousPosition(Tile.getTile(3, 4));
         Pawn attacked = new Pawn(Status.ALIVE, Color.WHITE);
-        attacked.setPreviousPosition(Tile.getTile(4,1));
-        Board finalBoard = new EnPassant().initiateStrategy(testBoard, new Move(Tile.getTile(3,3), Tile.getTile(4,2)), attacker, attacked);
-        Assert.assertTrue(finalBoard.getPieceAtTileLocation(Tile.getTile(4,2)).getPiece() instanceof Pawn);
-        Assert.assertNull(finalBoard.getPieceAtTileLocation(Tile.getTile(3,3)).getPiece());
-        Assert.assertNull(finalBoard.getPieceAtTileLocation(Tile.getTile(4,3)).getPiece());
+        attacked.setPreviousPosition(Tile.getTile(4, 1));
+        Board finalBoard = new EnPassant().initiateStrategy(testBoard, new Move(Tile.getTile(3, 3), Tile.getTile(4, 2)), attacker, attacked);
+        Assert.assertTrue(finalBoard.getPieceAtTileLocation(Tile.getTile(4, 2)).getPiece() instanceof Pawn);
+        Assert.assertNull(finalBoard.getPieceAtTileLocation(Tile.getTile(3, 3)).getPiece());
+        Assert.assertNull(finalBoard.getPieceAtTileLocation(Tile.getTile(4, 3)).getPiece());
 
     }
 

@@ -6,7 +6,12 @@ import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 
-public class Knight extends Piece{
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
+
+public class Knight extends Piece {
+
+    Logger log = LoggerFactory.getLogger(this.getClass().getName());
 
     public Knight(Status status, Color color) {
         this.status = status;
@@ -16,6 +21,7 @@ public class Knight extends Piece{
     @Override
     public boolean isValidMove(Board board, Move move) {
 
+        log.debug("##Knight:: isValidMove:: Validate if the move is valid for Knight..");
         if (move.getDestination().isValid(move.getDestination().getX(), move.getDestination().getY())) {
 
             if ((Math.abs(move.getDestination().getX() - move.getSource().getX()) == 1 &&
@@ -23,7 +29,8 @@ public class Knight extends Piece{
                     (Math.abs(move.getDestination().getX() - move.getSource().getX()) == 2 &&
                             Math.abs(move.getDestination().getY() - move.getSource().getY()) == 1)) {
 
-                if (board.isTileEmpty(Tile.getTile(move.getDestination().getX(),
+                if (board.isTileEmpty
+                        (Tile.getTile(move.getDestination().getX(),
                         move.getDestination().getY()))) {
                     return true;
                 } else {
@@ -36,16 +43,19 @@ public class Knight extends Piece{
 
             }
         }
+        log.debug("##Knight:: isValidMove:: Move not valid..");
         return false;
     }
 
     @Override
     public List<Tile> getAllPossibleMoves(Board board, Position position) {
+        log.debug("##Knight:: getAllPossibleMoves:: Find all possible moves for the knight..");
         List<Tile> moves = new ArrayList<>();
-        Arrays.stream(Tile.values()).forEach(e->{
+        Arrays.stream(Tile.values())
+                .forEach(e -> {
             Move move = new Move(Tile.getTile(position.getX(), position.getY()),
                     Tile.getTile(e.getX(), e.getY()));
-            if (isValidMove(board, move)){
+            if (isValidMove(board, move)) {
                 moves.add(e);
             }
         });

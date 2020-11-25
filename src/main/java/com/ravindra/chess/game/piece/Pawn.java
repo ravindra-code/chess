@@ -3,19 +3,25 @@ package com.ravindra.chess.game.piece;
 import com.ravindra.chess.game.*;
 
 import java.util.List;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
-public class Pawn extends Piece{
+public class Pawn extends Piece {
+
+    Logger log = LoggerFactory.getLogger(this.getClass().getName());
 
     public Pawn(Status status, Color color) {
         this.status = status;
         this.color = color;
     }
 
-    public Pawn(){}
+    public Pawn() {
+    }
 
     @Override
     public boolean isValidMove(Board board, Move move) {
 
+        log.debug("##Pawn:: isValidMove:: Validate if the move is valid for Pawn..");
         boolean validMove = false;
         if (move.getDestination().isValid(move.getDestination().getX(), move.getDestination().getY())) {
             int diffY = move.getDestination().getY() - move.getSource().getY();
@@ -43,12 +49,12 @@ public class Pawn extends Piece{
                     validMove = isAttackMove(board, move);
                 } else if (diffX == 0) {
                     if (diffY == -2) {
-                        if (Tile.isValid(move.getDestination().getX(), move.getDestination().getY() - 1)){
+                        if (Tile.isValid(move.getDestination().getX(), move.getDestination().getY() - 1)) {
                             validMove = ((board.isTileEmpty(move.getDestination())) &&
                                     (board.isTileEmpty(Tile.getTile(
                                             move.getDestination().getX(), move.getDestination().getY() - 1
                                     ))) && (position.getPiece().getCounter() == 0));
-                        }else{
+                        } else {
                             validMove = false;
                         }
 
@@ -60,14 +66,16 @@ public class Pawn extends Piece{
             }
         }
 
+        log.debug("##Pawn:: isValidMove:: Is move valid for Pawn:: "+ validMove);
         return validMove;
 
     }
 
-    public boolean isAttackMove(Board board, Move move){
+    public boolean isAttackMove(Board board, Move move) {
 
-        if (!board.isTileEmpty( move.getDestination())){
-            return this.getColor().equals(board.getPosition(move.getDestination()).getPiece().getColor())?false:true;
+        log.debug("##Pawn:: isAttackMove:: Validate if the move is attack move.. ");
+        if (!board.isTileEmpty(move.getDestination())) {
+            return this.getColor().equals(board.getPosition(move.getDestination()).getPiece().getColor()) ? false : true;
         }
         return false;
     }

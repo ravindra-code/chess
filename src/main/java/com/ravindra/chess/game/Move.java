@@ -11,7 +11,7 @@ public class Move {
         return color;
     }
 
-    public Move(){
+    public Move() {
         this.isCastleMove = false;
     }
 

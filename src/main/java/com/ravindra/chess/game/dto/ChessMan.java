@@ -1,11 +1,24 @@
 package com.ravindra.chess.game.dto;
 
+import javax.validation.constraints.Max;
+import javax.validation.constraints.Min;
+import javax.validation.constraints.NotNull;
+
 public class ChessMan {
 
+    @NotNull(message = "Color not specified.")
     private String color;
+    @NotNull(message = "Piece name not specified.")
     private String name;
+    @NotNull(message = "xCoordinate cannot be null.")
+    @Min(value = 0, message = "Invalid coordinate value. ")
+    @Max(value = 7, message = "Invalid coordinate value. ")
     private int xCoordinate;
+    @NotNull(message = "yCoordinate cannot be null.")
+    @Min(value = 0, message = "Invalid coordinate value. ")
+    @Max(value = 7, message = "Invalid coordinate value. ")
     private int yCoordinate;
+    @NotNull(message = "counter cannot be null.")
     private int counter;
 
     public ChessMan() {

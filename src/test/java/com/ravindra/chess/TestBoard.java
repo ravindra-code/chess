@@ -17,49 +17,49 @@ public class TestBoard {
 
 
     @Test
-    public void testThreatMatrix(){
+    public void testThreatMatrix() {
         Board testBoard = new Board();
         List<ChessMan> layout = new ArrayList<>();
-        layout.add(new ChessMan(Color.BLACK.name(), Pieces.KNIGHT.name(), 5,2, 1));
+        layout.add(new ChessMan(Color.BLACK.name(), Pieces.KNIGHT.name(), 5, 2, 1));
         testBoard.createChessBoard(layout);
         int[][] threatMatrix = testBoard.calculateThreatMatrix(testBoard, Color.WHITE);
-        Assert.assertEquals(threatMatrix[3][1],1);
-        Assert.assertEquals(threatMatrix[3][3],1);
-        Assert.assertEquals(threatMatrix[4][0],1);
-        Assert.assertEquals(threatMatrix[4][4],1);
-        Assert.assertEquals(threatMatrix[2][2],0);
+        Assert.assertEquals(threatMatrix[3][1], 1);
+        Assert.assertEquals(threatMatrix[3][3], 1);
+        Assert.assertEquals(threatMatrix[4][0], 1);
+        Assert.assertEquals(threatMatrix[4][4], 1);
+        Assert.assertEquals(threatMatrix[2][2], 0);
     }
 
     @Test
-    public void testKill(){
+    public void testKill() {
         Board testBoard = new Board();
         List<ChessMan> layout = new ArrayList<>();
-        layout.add(new ChessMan(Color.BLACK.name(), Pieces.PAWN.name(), 5,2, 1));
+        layout.add(new ChessMan(Color.BLACK.name(), Pieces.PAWN.name(), 5, 2, 1));
         testBoard.createChessBoard(layout);
-        Assert.assertEquals(testBoard.getPosition(Tile.getTile(5,2)).getPiece().getStatus(), Status.ALIVE);
-        testBoard.kill(testBoard.getPosition(Tile.getTile(5,2)).getPiece());
-        Assert.assertEquals(testBoard.getPosition(Tile.getTile(5,2)).getPiece().getStatus(), Status.KILLED);
+        Assert.assertEquals(testBoard.getPosition(Tile.getTile(5, 2)).getPiece().getStatus(), Status.ALIVE);
+        testBoard.kill(testBoard.getPosition(Tile.getTile(5, 2)).getPiece());
+        Assert.assertEquals(testBoard.getPosition(Tile.getTile(5, 2)).getPiece().getStatus(), Status.KILLED);
 
     }
 
     @Test
-    public void testChangePositions(){
+    public void testChangePositions() {
         Board testBoard = new Board();
         List<ChessMan> layout = new ArrayList<>();
-        layout.add(new ChessMan(Color.BLACK.name(), Pieces.PAWN.name(), 4,4, 1));
+        layout.add(new ChessMan(Color.BLACK.name(), Pieces.PAWN.name(), 4, 4, 1));
         testBoard.createChessBoard(layout);
-        testBoard.changePositions(new Move(Tile.getTile(4,4), Tile.getTile(4,3)),
+        testBoard.changePositions(new Move(Tile.getTile(4, 4), Tile.getTile(4, 3)),
                 new PieceFactory().getChessPiece(Pieces.PAWN.name(), Color.BLACK.name()));
-        Assert.assertTrue(testBoard.getPosition(Tile.getTile(4,3)).getPiece() instanceof Pawn);
+        Assert.assertTrue(testBoard.getPosition(Tile.getTile(4, 3)).getPiece() instanceof Pawn);
     }
 
     @Test
-    public void validateSetup(){
+    public void validateSetup() {
         Board layout = new Board();
-        Assert.assertTrue(layout.getPosition(Tile.getTile(0,0)).getPiece() instanceof Rook);
-        Assert.assertTrue(layout.getPosition(Tile.getTile(1,0)).getPiece() instanceof Knight);
-        Assert.assertTrue(layout.getPosition(Tile.getTile(2,0)).getPiece() instanceof Bishop);
-        Assert.assertTrue(layout.getPosition(Tile.getTile(2,1)).getPiece() instanceof Pawn);
+        Assert.assertTrue(layout.getPosition(Tile.getTile(0, 0)).getPiece() instanceof Rook);
+        Assert.assertTrue(layout.getPosition(Tile.getTile(1, 0)).getPiece() instanceof Knight);
+        Assert.assertTrue(layout.getPosition(Tile.getTile(2, 0)).getPiece() instanceof Bishop);
+        Assert.assertTrue(layout.getPosition(Tile.getTile(2, 1)).getPiece() instanceof Pawn);
 
 
     }

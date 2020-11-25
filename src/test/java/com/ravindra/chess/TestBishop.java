@@ -12,49 +12,49 @@ import java.util.List;
 public class TestBishop {
 
     @Test
-    public void validateValidMoveForBishop(){
+    public void validateValidMoveForBishop() {
 
         Board testBoard = new Board();
         List<ChessMan> layout = new ArrayList<>();
-        layout.add(new ChessMan(Color.WHITE.name(), Pieces.BISHOP.name(), 3,5, 2));
-        layout.add(new ChessMan(Color.BLACK.name(), Pieces.PAWN.name(), 5,2, 1));
-        layout.add(new ChessMan(Color.WHITE.name(), Pieces.PAWN.name(), 2,3, 2));
+        layout.add(new ChessMan(Color.WHITE.name(), Pieces.BISHOP.name(), 3, 5, 2));
+        layout.add(new ChessMan(Color.BLACK.name(), Pieces.PAWN.name(), 5, 2, 1));
+        layout.add(new ChessMan(Color.WHITE.name(), Pieces.PAWN.name(), 2, 3, 2));
         testBoard.createChessBoard(layout);
-        Assert.assertFalse(new Bishop().isValidMove(testBoard, new Move(Tile.getTile(3,5),
-                Tile.getTile(3,2))));
-        Assert.assertFalse(new Bishop().isValidMove(testBoard, new Move(Tile.getTile(3,5),
-                Tile.getTile(5,2))));
-        Assert.assertFalse(new Bishop().isValidMove(testBoard, new Move(Tile.getTile(3,5),
-                Tile.getTile(1,2))));
-        Assert.assertFalse(new Bishop().isValidMove(testBoard, new Move(Tile.getTile(3,5),
-                Tile.getTile(5,3))));
-        Assert.assertFalse(new Bishop().isValidMove(testBoard, new Move(Tile.getTile(3,5),
-                Tile.getTile(2,6))));
+        Assert.assertFalse(new Bishop().isValidMove(testBoard, new Move(Tile.getTile(3, 5),
+                Tile.getTile(3, 2))));
+        Assert.assertFalse(new Bishop().isValidMove(testBoard, new Move(Tile.getTile(3, 5),
+                Tile.getTile(5, 2))));
+        Assert.assertFalse(new Bishop().isValidMove(testBoard, new Move(Tile.getTile(3, 5),
+                Tile.getTile(1, 2))));
+        Assert.assertFalse(new Bishop().isValidMove(testBoard, new Move(Tile.getTile(3, 5),
+                Tile.getTile(5, 3))));
+        Assert.assertFalse(new Bishop().isValidMove(testBoard, new Move(Tile.getTile(3, 5),
+                Tile.getTile(2, 6))));
 
 
     }
 
     @Test
-    public void checkIfPathIsBlocked(){
+    public void checkIfPathIsBlocked() {
 
         Board testBoard = new Board();
         List<ChessMan> layout = new ArrayList<>();
-        layout.add(new ChessMan(Color.WHITE.name(), Pieces.BISHOP.name(), 3,4, 2));
-        layout.add(new ChessMan(Color.BLACK.name(), Pieces.PAWN.name(), 5,2, 1));
-        layout.add(new ChessMan(Color.WHITE.name(), Pieces.PAWN.name(), 2,3, 2));
+        layout.add(new ChessMan(Color.WHITE.name(), Pieces.BISHOP.name(), 3, 4, 2));
+        layout.add(new ChessMan(Color.BLACK.name(), Pieces.PAWN.name(), 5, 2, 1));
+        layout.add(new ChessMan(Color.WHITE.name(), Pieces.PAWN.name(), 2, 3, 2));
         testBoard.createChessBoard(layout);
-        Assert.assertFalse(new Bishop().isPathBlocked(testBoard, new Move(Tile.getTile(3,5),
-                Tile.getTile(2,6))));
+        Assert.assertFalse(new Bishop().isPathBlocked(testBoard, new Move(Tile.getTile(3, 5),
+                Tile.getTile(2, 6))));
 
 
     }
 
     @Test
-    public void testTracePath(){
-        Move move = new Move(Tile.getTile(4,4), Tile.getTile(1,1));
+    public void testTracePath() {
+        Move move = new Move(Tile.getTile(4, 4), Tile.getTile(1, 1));
         List<Tile> path = new Bishop(Status.ALIVE, Color.BLACK).tracePath(move);
         StringBuilder builder = new StringBuilder();
-        path.forEach(e->{
+        path.forEach(e -> {
             builder.append(e.name());
         });
         Assert.assertEquals("E5D4C3", builder.toString());
