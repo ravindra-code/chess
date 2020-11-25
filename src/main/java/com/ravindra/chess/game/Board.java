@@ -10,6 +10,7 @@ import com.ravindra.chess.memento.Originator;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
+import java.util.Scanner;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -116,32 +117,32 @@ public class Board implements Cloneable {
     }
 
     public synchronized void setPosition(Position position) {
-        this.board[position.getX()][position.getY()] = new Position(position.getX(), position.getY(),
+        this.board[position.getY()][position.getX()] = new Position(position.getY(), position.getX(),
                 position.getPiece());
     }
 
     public synchronized Position getPosition(Tile tile) {
-        return board[tile.getX()][tile.getY()];
+        return board[tile.getY()][tile.getX()];
     }
 
     public void vacate(int x, int y) {
-        board[x][y] = new Position(x, y, null);
+        board[y][x] = new Position(y, x, null);
     }
 
     public Position getPieceAtTileLocation(Tile tile) {
-        return this.board[tile.getX()][tile.getY()];
+        return this.board[tile.getY()][tile.getX()];
     }
 
     public boolean isTileEmpty(Tile tile) {
         log.debug("##Board:: isTileEmpty:: Check if the tile is empty..");
-        Position position = this.board[tile.getX()][tile.getY()];
+        Position position = this.board[tile.getY()][tile.getX()];
         return (position == null || position.getPiece() == null) ? true : false;
     }
 
     public boolean changePositions(Move move, Piece piece) {
 
         log.debug("##Board:: changePosition:: Start changing positions..");
-        if (piece.isValidMove(this, move)) {
+        if (piece.isValidMove(this, move) && move.getSource()!=move.getDestination()) {
             Tile destination = Tile.getTile(move.getDestination().getX(), move.getDestination().getY());
 
             if (!this.isTileEmpty(destination)) {

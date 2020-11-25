@@ -25,10 +25,16 @@ public class Queen extends Piece {
         log.debug("##Queen:: isValidMove:: Validate if the move is valid..");
         if (move.getDestination().isValid(move.getDestination().getX(), move.getDestination().getY())) {
             if ((Math.abs(move.getDestination().getX() - move.getSource().getX()) ==
-                    Math.abs(move.getDestination().getY() - move.getSource().getX())) ||
-                    move.getSource().getX() == move.getDestination().getX() ||
-                    move.getSource().getY() == move.getDestination().getY()) {
+                    Math.abs(move.getDestination().getY() - move.getSource().getY())) ||
+                    (move.getSource().getX() == move.getDestination().getX()) ||
+                    (move.getSource().getY() == move.getDestination().getY())) {
 
+
+                if (!board.isTileEmpty(move.getDestination()) &&
+                        board.getPieceAtTileLocation(move.getDestination()).getPiece().getColor()
+                                ==board.getPieceAtTileLocation(move.getSource()).getPiece().getColor()){
+                    return false;
+                }
                 if (!isPathBlocked(board, move)) {
                     log.debug("##Queen:: isValidMove:: Valid Move..");
                     return true;

@@ -23,7 +23,7 @@ public class TestKnight {
         layout.add(new ChessMan(Color.WHITE.name(), Pieces.BISHOP.name(), 6, 3, 3));
         testBoard.createChessBoard(layout);
         Assert.assertTrue(new Knight(Status.ALIVE, Color.BLACK).isValidMove(testBoard, new Move(Tile.getTile(4, 4), Tile.getTile(6, 3))));
-        Assert.assertFalse(new Knight(Status.ALIVE, Color.BLACK).isValidMove(testBoard, new Move(Tile.getTile(4, 4), Tile.getTile(5, 2))));
+        Assert.assertFalse(new Knight(Status.ALIVE, Color.BLACK).isValidMove(testBoard, new Move(Tile.getTile(4, 4), Tile.getTile(2, 5))));
         Assert.assertFalse(new Knight(Status.ALIVE, Color.BLACK).isValidMove(testBoard, new Move(Tile.getTile(4, 4), Tile.getTile(6, 1))));
         Assert.assertTrue(new Knight(Status.ALIVE, Color.BLACK).isValidMove(testBoard, new Move(Tile.getTile(4, 4), Tile.getTile(3, 2))));
 

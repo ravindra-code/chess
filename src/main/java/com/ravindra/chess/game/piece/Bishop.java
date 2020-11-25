@@ -29,9 +29,15 @@ public class Bishop extends Piece {
         log.debug("##Bishop:: isValidMove:: Validate if the move is valid..");
         if (move.getDestination().isValid(move.getDestination().getX(), move.getDestination().getY())) {
 
-            if (Math.abs(move.getDestination().getX() - move.getSource().getY()) ==
-                    Math.abs(move.getDestination().getY() - move.getSource().getX())) {
+            if (Math.abs(move.getDestination().getX() - move.getSource().getX()) ==
+                    Math.abs(move.getDestination().getY() - move.getSource().getY())) {
 
+
+                if (!board.isTileEmpty(move.getDestination()) &&
+                        board.getPieceAtTileLocation(move.getDestination()).getPiece().getColor()
+                                ==board.getPieceAtTileLocation(move.getSource()).getPiece().getColor()){
+                    return false;
+                }
                 if (!isPathBlocked(board, move)) {
                     log.debug("##Bishop:: isValidMove:: Valid move..");
                     return true;
@@ -50,7 +56,7 @@ public class Bishop extends Piece {
         log.debug("##Bishop:: isPathBlocked:: Validate if the path is blocked for Bishop's movement..");
         List<Tile> path = tracePath(move);
         for (Tile tile : path) {
-            if (!board.isTileEmpty(tile)) {
+            if (!board.isTileEmpty(tile) && tile.name()!=move.getSource().name()) {
                 return true;
             }
         }

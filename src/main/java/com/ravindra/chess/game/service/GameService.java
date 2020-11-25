@@ -115,11 +115,15 @@ public class GameService {
             produces = MediaType.APPLICATION_JSON_VALUE)
     public boolean isKingUnderCheckMate(@Valid @RequestBody List<ChessMan> layout, @PathVariable int xCoordinate, @PathVariable int yCoordinate) {
 
-        log.debug("##GameService:: isKingUnderCheckMate:: Validate if the king is under checkmate..");
-        Board board = new Board(layout);
-        Position position = board.getPieceAtTileLocation(Tile.getTile(xCoordinate, yCoordinate));
-        if (position.getPiece() instanceof King) {
-            return ((King) position.getPiece()).isKingChecked(board, xCoordinate, yCoordinate);
+        try {
+            log.debug("##GameService:: isKingUnderCheckMate:: Validate if the king is under checkmate..");
+            Board board = new Board(layout);
+            Position position = board.getPieceAtTileLocation(Tile.getTile(xCoordinate, yCoordinate));
+            if (position.getPiece() instanceof King) {
+                return ((King) position.getPiece()).isCheckMate(board, xCoordinate, yCoordinate);
+            }
+        }catch (Exception e){
+            log.error("Error while checking checkmate..");
         }
         return false;
 

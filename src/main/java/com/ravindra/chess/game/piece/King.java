@@ -66,8 +66,6 @@ public class King extends Piece {
         return false;
     }
 
-    //Todo: Few cases remaining.
-    //Todo: comment
     public boolean isCheckMate(Board board, int x, int y) throws Exception{
         log.debug("##King:: isCheckMate:: Find if the king is under checkmate..");
         try {

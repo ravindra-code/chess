@@ -37,6 +37,12 @@ public class Rook extends Piece {
             if (move.getSource().getX() == move.getDestination().getX() ||
                     move.getSource().getY() == move.getDestination().getY()) {
 
+
+                if (!board.isTileEmpty(move.getDestination()) &&
+                        board.getPieceAtTileLocation(move.getDestination()).getPiece().getColor()
+                                ==board.getPieceAtTileLocation(move.getSource()).getPiece().getColor()){
+                    return false;
+                }
                 if (!isPathBlocked(board, move) || move.isCastleMove()) {
                     return true;
 

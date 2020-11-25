@@ -24,7 +24,7 @@ public class TestRook {
         layout.add(new ChessMan(Color.BLACK.name(), Pieces.ROOK.name(), 4, 4, 5));
         layout.add(new ChessMan(Color.WHITE.name(), Pieces.PAWN.name(), 4, 2, 1));
         testBoard.createChessBoard(layout);
-        Assert.assertFalse(new Rook(Status.ALIVE, Color.BLACK).isValidMove(testBoard, new Move(Tile.getTile(4, 4), Tile.getTile(4, 0))));
+        Assert.assertFalse(new Rook(Status.ALIVE, Color.BLACK).isValidMove(testBoard, new Move(Tile.getTile(4, 4), Tile.getTile(0, 4))));
         Assert.assertTrue(new Rook(Status.ALIVE, Color.BLACK).isValidMove(testBoard, new Move(Tile.getTile(4, 4), Tile.getTile(4, 6))));
         Assert.assertTrue(new Rook(Status.ALIVE, Color.BLACK).isValidMove(testBoard, new Move(Tile.getTile(4, 4), Tile.getTile(2, 4))));
 
@@ -50,7 +50,7 @@ public class TestRook {
         layout.add(new ChessMan(Color.BLACK.name(), Pieces.ROOK.name(), 4, 4, 5));
         layout.add(new ChessMan(Color.WHITE.name(), Pieces.PAWN.name(), 4, 2, 1));
         testBoard.createChessBoard(layout);
-        Assert.assertTrue(new Rook(Status.ALIVE, Color.BLACK).isPathBlocked(testBoard, new Move(Tile.getTile(4, 4), Tile.getTile(4, 0))));
+        Assert.assertTrue(new Rook(Status.ALIVE, Color.BLACK).isPathBlocked(testBoard, new Move(Tile.getTile(4, 4), Tile.getTile(0, 4))));
         Assert.assertFalse(new Rook(Status.ALIVE, Color.BLACK).isPathBlocked(testBoard, new Move(Tile.getTile(4, 4), Tile.getTile(4, 6))));
         Assert.assertFalse(new Rook(Status.ALIVE, Color.BLACK).isPathBlocked(testBoard, new Move(Tile.getTile(4, 4), Tile.getTile(2, 4))));
 

@@ -36,9 +36,9 @@ public class TestBoard {
         List<ChessMan> layout = new ArrayList<>();
         layout.add(new ChessMan(Color.BLACK.name(), Pieces.PAWN.name(), 5, 2, 1));
         testBoard.createChessBoard(layout);
-        Assert.assertEquals(testBoard.getPosition(Tile.getTile(5, 2)).getPiece().getStatus(), Status.ALIVE);
-        testBoard.kill(testBoard.getPosition(Tile.getTile(5, 2)).getPiece());
-        Assert.assertEquals(testBoard.getPosition(Tile.getTile(5, 2)).getPiece().getStatus(), Status.KILLED);
+        Assert.assertEquals(testBoard.getPosition(Tile.getTile(2, 5)).getPiece().getStatus(), Status.ALIVE);
+        testBoard.kill(testBoard.getPosition(Tile.getTile(2, 5)).getPiece());
+        Assert.assertEquals(testBoard.getPosition(Tile.getTile(2, 5)).getPiece().getStatus(), Status.KILLED);
 
     }
 
@@ -60,6 +60,17 @@ public class TestBoard {
         Assert.assertTrue(layout.getPosition(Tile.getTile(1, 0)).getPiece() instanceof Knight);
         Assert.assertTrue(layout.getPosition(Tile.getTile(2, 0)).getPiece() instanceof Bishop);
         Assert.assertTrue(layout.getPosition(Tile.getTile(2, 1)).getPiece() instanceof Pawn);
+
+
+    }
+
+    @Test
+    public void isTileEmpty(){
+        Board testBoard = new Board();
+        List<ChessMan> layout = new ArrayList<>();
+        layout.add(new ChessMan(Color.WHITE.name(), Pieces.BISHOP.name(), 3, 4, 2));
+        testBoard.createChessBoard(layout);
+        Assert.assertFalse(testBoard.isTileEmpty(Tile.getTile(4,3)));
 
 
     }
