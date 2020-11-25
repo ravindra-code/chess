@@ -23,7 +23,7 @@ public class TestCastle {
         Rook rook = new Rook(Status.ALIVE, Color.BLACK);
         Assert.assertTrue(new Castling().isPathClear(testBoard, new Position(4, 7, king),
                 new Position(7, 7, rook)));
-        layout.add(new ChessMan(Color.BLACK.name(), Pieces.KNIGHT.name(), 6, 7, 0));
+        layout.add(new ChessMan(Color.BLACK.name(), Pieces.KNIGHT.name(), 7, 6, 0));
         testBoard.createChessBoard(layout);
         Assert.assertFalse(new Castling().isPathClear(testBoard, new Position(4, 7, king),
                 new Position(7, 7, rook)));

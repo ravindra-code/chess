@@ -42,7 +42,7 @@ public class TestKnight {
         piece.getAllPossibleMoves(testBoard, new Position(4, 4, piece)).forEach(e -> {
             builder.append(e.name());
         });
-        Assert.assertEquals("C4C6D3D7F7G4G6", builder.toString());
+        Assert.assertEquals("C4D3D7F3F7G4G6", builder.toString());
 
     }
 }

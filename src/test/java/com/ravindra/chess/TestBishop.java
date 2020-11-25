@@ -26,9 +26,7 @@ public class TestBishop {
                 Tile.getTile(5, 2))));
         Assert.assertFalse(new Bishop().isValidMove(testBoard, new Move(Tile.getTile(3, 5),
                 Tile.getTile(1, 2))));
-        Assert.assertFalse(new Bishop().isValidMove(testBoard, new Move(Tile.getTile(3, 5),
-                Tile.getTile(5, 3))));
-        Assert.assertFalse(new Bishop().isValidMove(testBoard, new Move(Tile.getTile(3, 5),
+        Assert.assertTrue(new Bishop().isValidMove(testBoard, new Move(Tile.getTile(3, 5),
                 Tile.getTile(2, 6))));
 
 

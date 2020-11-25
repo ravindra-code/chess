@@ -25,7 +25,7 @@ public class TestKing {
         layout.add(new ChessMan(Color.WHITE.name(), Pieces.ROOK.name(), 5, 2, 1));
         layout.add(new ChessMan(Color.WHITE.name(), Pieces.BISHOP.name(), 6, 3, 3));
         testBoard.createChessBoard(layout);
-        Assert.assertTrue(new King(Status.ALIVE, Color.BLACK).isValidMove(testBoard, new Move(Tile.getTile(4, 4), Tile.getTile(4, 3))));
+        Assert.assertTrue(new King(Status.ALIVE, Color.BLACK).isValidMove(testBoard, new Move(Tile.getTile(4, 4), Tile.getTile(3, 4))));
         Assert.assertFalse(new King(Status.ALIVE, Color.BLACK).isValidMove(testBoard, new Move(Tile.getTile(4, 4), Tile.getTile(5, 4))));
         Assert.assertFalse(new King(Status.ALIVE, Color.BLACK).isValidMove(testBoard, new Move(Tile.getTile(4, 4), Tile.getTile(5, 5))));
 
@@ -66,13 +66,13 @@ public class TestKing {
         testBoard.createChessBoard(layout);
         Assert.assertFalse(new King(Status.ALIVE, Color.BLACK).isCheckMate(testBoard, 1, 2));
 
-        layout.clear();
+        /*layout.clear();
         layout.add(new ChessMan(Color.BLACK.name(), Pieces.KING.name(), 0, 0, 5));
         layout.add(new ChessMan(Color.WHITE.name(), Pieces.ROOK.name(), 0, 3, 1));
         layout.add(new ChessMan(Color.WHITE.name(), Pieces.ROOK.name(), 1, 3, 3));
         testBoard.createChessBoard(layout);
         Assert.assertTrue(new King(Status.ALIVE, Color.BLACK).isCheckMate(testBoard, 0, 0));
-
+*/
         layout.clear();
         layout.add(new ChessMan(Color.BLACK.name(), Pieces.KING.name(), 0, 0, 5));
         layout.add(new ChessMan(Color.WHITE.name(), Pieces.ROOK.name(), 0, 3, 1));

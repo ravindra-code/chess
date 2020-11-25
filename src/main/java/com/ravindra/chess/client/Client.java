@@ -5,7 +5,6 @@ import com.ravindra.chess.game.Move;
 import com.ravindra.chess.game.Position;
 import com.ravindra.chess.game.Tile;
 import com.ravindra.chess.game.factory.PieceFactory;
-import com.ravindra.chess.game.piece.King;
 import com.ravindra.chess.game.piece.Piece;
 
 import java.util.Arrays;
@@ -36,8 +35,6 @@ public class Client {
         System.out.println("2: Initiate Castling.");
         System.out.println("3: Initiate En Passant.");
         System.out.println("4: Initiate Pawn Promotion.");
-        System.out.println("5: Initiate Check.");
-        System.out.println("6: Initiate CheckMate.");
     }
 
     public void printChessBoard(Board board) {
@@ -70,55 +67,6 @@ public class Client {
         return random.nextInt(8);
     }
 
-    public void initiateCheck(Board board){
-        System.out.println("Enter the x Coordinate of the King under check..");
-        int x = getUserInput();
-        System.out.println("Enter the y Coordinate of the King under check..");
-        int y = getUserInput();
-        Piece piece = board.getPieceAtTileLocation(Tile.getTile(x, y)).getPiece();
-        boolean isCheck = false;
-        if (piece instanceof King){
-            isCheck = ((King) piece).isKingChecked(board, x,y);
-        }else{
-            System.out.println("Check not possible at "+ x+":"+y);
-        }
-        if (isCheck){
-            System.out.println("King is under threat. Protect your king!!!");
-        }else{
-            System.out.println("Conditions for check not met!!!");
-        }
-    }
-
-    public void initiateCheckMate(Board board){
-        System.out.println("Enter  x Coordinate of the King under check..");
-        int x =  getUserInput();
-        System.out.println("Enter the y Coordinate of the King under check..");
-        int y = getUserInput();
-        Piece piece = board.getPieceAtTileLocation(Tile.getTile(x, y)).getPiece();
-        boolean isCheckMate = false;
-        if (piece instanceof King){
-            isCheckMate = ((King) piece).isKingChecked(board, x,y);
-        }else{
-            System.out.println("Check not possible at "+ x+":"+y);
-        }
-        if (isCheckMate){
-            System.out.println("King is under checkmate. It's Game Over. Better luck next time..");
-        }else{
-            System.out.println("Conditions for checkmate not met!!!");
-        }
-    }
-
-    public void initiatePawnPromotion(){
-
-    }
-
-    public void initiateEnPassant(){
-
-    }
-
-    public void initiateCastling(){
-
-    }
 
     public boolean initiateMovement(Board board) {
         boolean moveStatus = false;
@@ -147,21 +95,6 @@ public class Client {
                 initiateMovement(board);
             }
             break;
-
-            case 2:initiateCastling();
-                break;
-            case 3: {
-                initiateEnPassant();
-                break;
-            }
-            case 4:initiatePawnPromotion();
-                break;
-            case 5:initiateCheck(board );
-                break;
-            case 6: {
-                initiateCheckMate(board);
-                break;
-            }
 
         }
     }
