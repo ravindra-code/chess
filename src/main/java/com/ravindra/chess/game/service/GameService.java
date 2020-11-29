@@ -6,13 +6,15 @@ import com.ravindra.chess.game.factory.PieceFactory;
 import com.ravindra.chess.game.piece.*;
 import com.ravindra.chess.game.strategies.Castling;
 import com.ravindra.chess.game.strategies.PawnPromotion;
+import io.swagger.annotations.ApiOperation;
+import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
 import org.springframework.web.bind.annotation.*;
 
 import javax.validation.Valid;
 import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.List;
+import java.util.*;
+
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
@@ -23,6 +25,8 @@ public class GameService {
     Logger log = LoggerFactory.getLogger(this.getClass().getName());
 
     @GetMapping("/game/begin")
+    @ApiOperation(value = "Start a new game.")
+    @ResponseStatus(HttpStatus.OK)
     public List<ChessMan> startNewGame() {
         log.debug("##GameService:: startNewGame:: Begin new game..");
         Board board = new Board();
@@ -31,6 +35,8 @@ public class GameService {
 
     @PostMapping(value = "/game/castle/{color}/{xKing}/{yKing}/{xRook}/{yRook}", consumes = MediaType.APPLICATION_JSON_VALUE,
             produces = MediaType.APPLICATION_JSON_VALUE)
+    @ApiOperation(value = "Initiate Castling strategy.")
+    @ResponseStatus(HttpStatus.ACCEPTED)
     public List<ChessMan> initiateCastling(@Valid @RequestBody List<ChessMan> layout, @PathVariable String color, @PathVariable int xKing,
                                            @PathVariable int yKing, @PathVariable int xRook, @PathVariable int yRook) {
 
@@ -44,6 +50,8 @@ public class GameService {
 
     @PostMapping(value = "/game/enpassant/{color}/{xSource}/{ySource}/{xDestination}/{yDestination}", consumes = MediaType.APPLICATION_JSON_VALUE,
             produces = MediaType.APPLICATION_JSON_VALUE)
+    @ApiOperation(value = "Initiate En Passant strategy.")
+    @ResponseStatus(HttpStatus.ACCEPTED)
     public List<ChessMan> initiateEnPassant(@Valid @RequestBody List<ChessMan> layout, @PathVariable String color, @PathVariable int xSource,
                                             @PathVariable int ySource, @PathVariable int xDestination, @PathVariable int yDestination) {
         // Initiate enpassant strategy.
@@ -53,6 +61,8 @@ public class GameService {
 
     @PostMapping(value = "/game/promotion/{color}/{topromote}{xCoordinate}{yCoordinate}", consumes = MediaType.APPLICATION_JSON_VALUE,
             produces = MediaType.APPLICATION_JSON_VALUE)
+    @ApiOperation(value = "Initiate Pawn Promotion strategy.")
+    @ResponseStatus(HttpStatus.ACCEPTED)
     public List<ChessMan> initiatePawnPromotion(@Valid List<ChessMan> layout, @PathVariable String color, @PathVariable String topromote,
                                                 @PathVariable int xCoordinate, @PathVariable int yCoordinate) {
 
@@ -67,6 +77,8 @@ public class GameService {
 
     @PostMapping(value = "/game/move/{sourceX}/{sourceY}/{destX}/{destY}/{piece}/{color}", consumes = MediaType.APPLICATION_JSON_VALUE,
             produces = MediaType.APPLICATION_JSON_VALUE)
+    @ApiOperation(value = "Initiate a move.")
+    @ResponseStatus(HttpStatus.ACCEPTED)
     public Board makeMove(@Valid @RequestBody List<ChessMan> layout, @PathVariable(name = "sourceX") int sourceX, @PathVariable(name = "sourceY") int sourceY,
                           @PathVariable(name = "destX") int destX,
                           @PathVariable(name = "destY") int destY, @PathVariable(name = "piece") String piece, @PathVariable(name = "color") String color) {
@@ -85,6 +97,8 @@ public class GameService {
 
     @PostMapping(value = "/game/valid/{startX}/{startY}/{destX}/{destY}/{piece}/{color}", consumes = MediaType.APPLICATION_JSON_VALUE,
             produces = MediaType.APPLICATION_JSON_VALUE)
+    @ApiOperation(value = "Validate if a particular move is valid or not.")
+    @ResponseStatus(HttpStatus.OK)
     public boolean isMoveValid(@Valid @RequestBody List<ChessMan> layout, @PathVariable(name = "startX") Integer startX,
                                @PathVariable(name = "startY") Integer startY, @PathVariable(name = "destX") Integer destX,
                                @PathVariable(name = "destY") Integer destY, @PathVariable(name = "piece") String piece,
@@ -99,6 +113,8 @@ public class GameService {
 
     @PostMapping(value = "/check/{xCoordinate}/{yCoordinate}", consumes = MediaType.APPLICATION_JSON_VALUE,
             produces = MediaType.APPLICATION_JSON_VALUE)
+    @ApiOperation(value = "Validate if the king is under check.")
+    @ResponseStatus(HttpStatus.OK)
     public boolean isKingUnderCheck(@Valid @RequestBody List<ChessMan> layout,
                                     @PathVariable int xCoordinate, @PathVariable int yCoordinate) {
 
@@ -113,6 +129,8 @@ public class GameService {
 
     @PostMapping(value = "/checkmate/{xCoordinate}/{yCoordinate}", consumes = MediaType.APPLICATION_JSON_VALUE,
             produces = MediaType.APPLICATION_JSON_VALUE)
+    @ApiOperation(value = "Validate if the king is under checkmate.")
+    @ResponseStatus(HttpStatus.OK)
     public boolean isKingUnderCheckMate(@Valid @RequestBody List<ChessMan> layout, @PathVariable int xCoordinate, @PathVariable int yCoordinate) {
 
         try {

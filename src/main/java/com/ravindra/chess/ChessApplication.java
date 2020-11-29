@@ -3,12 +3,11 @@ package com.ravindra.chess;
 import com.ravindra.chess.client.Client;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
-import springfox.documentation.swagger2.annotations.EnableSwagger2;
 
 import java.util.Properties;
 
+
 @SpringBootApplication
-@EnableSwagger2
 public class ChessApplication {
 
     public static void main(String[] args) throws Exception{

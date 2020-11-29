@@ -1,14 +1,8 @@
 package com.ravindra.chess;
 
-import com.ravindra.chess.game.Board;
-import com.ravindra.chess.game.Color;
-import com.ravindra.chess.game.Move;
-import com.ravindra.chess.game.Tile;
+import com.ravindra.chess.game.*;
 import com.ravindra.chess.game.dto.ChessMan;
-import com.ravindra.chess.game.piece.Knight;
-import com.ravindra.chess.game.piece.Pieces;
-import com.ravindra.chess.game.piece.Rook;
-import com.ravindra.chess.game.piece.Status;
+import com.ravindra.chess.game.piece.*;
 import org.junit.Assert;
 import org.junit.Test;
 
@@ -24,7 +18,7 @@ public class TestRook {
         layout.add(new ChessMan(Color.BLACK.name(), Pieces.ROOK.name(), 4, 4, 5));
         layout.add(new ChessMan(Color.WHITE.name(), Pieces.PAWN.name(), 4, 2, 1));
         testBoard.createChessBoard(layout);
-        Assert.assertFalse(new Rook(Status.ALIVE, Color.BLACK).isValidMove(testBoard, new Move(Tile.getTile(4, 4), Tile.getTile(0, 4))));
+        Assert.assertTrue(new Rook(Status.ALIVE, Color.BLACK).isValidMove(testBoard, new Move(Tile.getTile(4, 4), Tile.getTile(0, 4))));
         Assert.assertTrue(new Rook(Status.ALIVE, Color.BLACK).isValidMove(testBoard, new Move(Tile.getTile(4, 4), Tile.getTile(4, 6))));
         Assert.assertTrue(new Rook(Status.ALIVE, Color.BLACK).isValidMove(testBoard, new Move(Tile.getTile(4, 4), Tile.getTile(2, 4))));
 
@@ -50,9 +44,11 @@ public class TestRook {
         layout.add(new ChessMan(Color.BLACK.name(), Pieces.ROOK.name(), 4, 4, 5));
         layout.add(new ChessMan(Color.WHITE.name(), Pieces.PAWN.name(), 4, 2, 1));
         testBoard.createChessBoard(layout);
-        Assert.assertTrue(new Rook(Status.ALIVE, Color.BLACK).isPathBlocked(testBoard, new Move(Tile.getTile(4, 4), Tile.getTile(0, 4))));
+        Assert.assertFalse(new Rook(Status.ALIVE, Color.BLACK).isPathBlocked(testBoard, new Move(Tile.getTile(4, 4), Tile.getTile(0, 4))));
         Assert.assertFalse(new Rook(Status.ALIVE, Color.BLACK).isPathBlocked(testBoard, new Move(Tile.getTile(4, 4), Tile.getTile(4, 6))));
         Assert.assertFalse(new Rook(Status.ALIVE, Color.BLACK).isPathBlocked(testBoard, new Move(Tile.getTile(4, 4), Tile.getTile(2, 4))));
+        Assert.assertTrue(new Rook(Status.ALIVE, Color.BLACK).isPathBlocked(testBoard, new Move(Tile.getTile(4, 4), Tile.getTile(4, 0))));
+        Assert.assertFalse(new Rook(Status.ALIVE, Color.BLACK).isPathBlocked(testBoard, new Move(Tile.getTile(4, 4), Tile.getTile(4, 2))));
 
     }
 }

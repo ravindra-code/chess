@@ -44,7 +44,7 @@ public class Board implements Cloneable {
             Piece piece = new PieceFactory().getChessPiece(e.getName(), e.getColor());
             piece.setCounter(e.getCounter());
             Position position = new Position(e.getxCoordinate(), e.getyCoordinate(), piece);
-            board[e.getxCoordinate()][e.getyCoordinate()] = position;
+            board[e.getyCoordinate()][e.getxCoordinate()] = position;
 
         });
     }
@@ -158,7 +158,7 @@ public class Board implements Cloneable {
             return true;
         } else {
             log.error("##Board:: changePositions:: Move not allowed..");
-            throw new InvalidMoveException("Move not valid..");
+            throw new InvalidMoveException("");
         }
 
     }
@@ -175,22 +175,29 @@ public class Board implements Cloneable {
         }
     }
 
+    /*
+    *  Method calculates the possible positions on the chess board, where the given
+    *  piece is threatened.
+    *  input: Current layout of the board.
+    *  input: color of the side for whom the matrix is to be calculated.
+    * */
+
     public int[][] calculateThreatMatrix(Board layout, Color color) {
 
         log.debug("##Board::calculateThreatMatrix:: Calculate threat matrix..");
         int[][] threatMatrix = new int[8][8];
 
-        Arrays.stream(Tile.values()).forEach(e -> {
-            Position position = getPosition(e);
-            if (null != position && null != position.getPiece() &&
-                    !position.getPiece().getColor().equals(color)) {
+        Arrays.stream(Tile.values()).filter(x->!layout.isTileEmpty(x))
+                .forEach(e -> {
+                    Position position = getPosition(e);
+                    if (!position.getPiece().getColor().equals(color)) {
 
-                position.getPiece().getAllPossibleMoves(layout, position).stream().forEach(t -> {
-                    threatMatrix[t.getX()][t.getY()] = 1;
+                        position.getPiece().getAllPossibleMoves(layout, position).stream().forEach(t -> {
+                            threatMatrix[t.getX()][t.getY()] = 1;
+                        });
+
+                    }
                 });
-
-            }
-        });
         return threatMatrix;
 
     }

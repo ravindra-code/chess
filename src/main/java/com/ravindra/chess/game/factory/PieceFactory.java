@@ -5,7 +5,7 @@ import com.ravindra.chess.game.piece.*;
 
 public class PieceFactory {
 
-    public String getChessPieceName(Piece piece) {
+    public static String getChessPieceName(Piece piece) {
         if (piece instanceof King) {
             return Pieces.KING.name();
         } else if (piece instanceof Knight) {
@@ -23,7 +23,7 @@ public class PieceFactory {
         }
     }
 
-    public Piece getChessPiece(String piece, String color) {
+    public static Piece getChessPiece(String piece, String color) {
 
         if (piece.equalsIgnoreCase(Pieces.KING.toString())) {
             return new King(Status.ALIVE, Color.valueOf(color));

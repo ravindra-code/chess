@@ -31,9 +31,9 @@ public class King extends Piece {
         log.debug("##King:: isValidMove:: Validate move for the King..");
         if (move.getDestination().isValid(move.getDestination().getX(), move.getDestination().getY())) {
 
-            if (isKingChecked(board, move.getDestination().getX(), move.getDestination().getY())) {
+            /*if (isKingChecked(board, move.getDestination().getX(), move.getDestination().getY())) {
                 return false;
-            }
+            }*/
             int diffX = Math.abs(move.getDestination().getX() - move.getSource().getX());
             int diffY = Math.abs(move.getDestination().getY() - move.getSource().getY());
             if (diffX <= 1 &&

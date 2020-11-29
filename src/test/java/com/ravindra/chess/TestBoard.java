@@ -28,6 +28,89 @@ public class TestBoard {
         Assert.assertEquals(threatMatrix[4][0], 1);
         Assert.assertEquals(threatMatrix[4][4], 1);
         Assert.assertEquals(threatMatrix[2][2], 0);
+
+        layout.clear();
+        layout.add(new ChessMan(Color.BLACK.name(), Pieces.KNIGHT.name(), 5, 2, 1));
+        layout.add(new ChessMan(Color.BLACK.name(), Pieces.ROOK.name(), 0, 7, 0));
+        testBoard.createChessBoard(layout);
+        threatMatrix = testBoard.calculateThreatMatrix(testBoard, Color.WHITE);
+        Assert.assertEquals(threatMatrix[3][1], 1);
+        Assert.assertEquals(threatMatrix[3][3], 1);
+        Assert.assertEquals(threatMatrix[4][0], 1);
+        Assert.assertEquals(threatMatrix[4][4], 1);
+        Assert.assertEquals(threatMatrix[2][2], 0);
+
+        Assert.assertEquals(threatMatrix[0][4], 1);
+        Assert.assertEquals(threatMatrix[0][3], 1);
+        Assert.assertEquals(threatMatrix[0][1], 1);
+        Assert.assertEquals(threatMatrix[5][7], 1);
+        Assert.assertEquals(threatMatrix[7][6], 0);
+
+        layout.clear();
+        layout.add(new ChessMan(Color.BLACK.name(), Pieces.KNIGHT.name(), 5, 2, 1));
+        layout.add(new ChessMan(Color.BLACK.name(), Pieces.ROOK.name(), 0, 7, 0));
+        layout.add(new ChessMan(Color.BLACK.name(), Pieces.BISHOP.name(), 6, 5, 5));
+        layout.add(new ChessMan(Color.BLACK.name(), Pieces.PAWN.name(), 6, 4, 2));
+        testBoard.createChessBoard(layout);
+        threatMatrix = testBoard.calculateThreatMatrix(testBoard, Color.WHITE);
+        Assert.assertEquals(threatMatrix[3][3], 1);
+        Assert.assertEquals(threatMatrix[4][0], 1);
+        Assert.assertEquals(threatMatrix[4][4], 1);
+        Assert.assertEquals(threatMatrix[2][2], 0);
+
+        Assert.assertEquals(threatMatrix[0][3], 1);
+        Assert.assertEquals(threatMatrix[0][1], 1);
+        Assert.assertEquals(threatMatrix[5][7], 1);
+        Assert.assertEquals(threatMatrix[7][6], 1);
+
+        // Pawn
+        //Assert.assertEquals(threatMatrix[7][3], 1);
+        //Assert.assertEquals(threatMatrix[5][3], 1);
+
+        Assert.assertEquals(threatMatrix[7][4], 1);
+        Assert.assertEquals(threatMatrix[5][6], 1);
+        Assert.assertEquals(threatMatrix[4][7], 1);
+        Assert.assertEquals(threatMatrix[6][6], 0);
+        Assert.assertEquals(threatMatrix[5][4], 1);
+        Assert.assertEquals(threatMatrix[4][3], 1);
+        Assert.assertEquals(threatMatrix[2][1], 1);
+        Assert.assertEquals(threatMatrix[3][2], 1);
+
+        layout.clear();
+        layout.add(new ChessMan(Color.BLACK.name(), Pieces.QUEEN.name(), 6, 4, 2));
+        testBoard.createChessBoard(layout);
+        threatMatrix = testBoard.calculateThreatMatrix(testBoard, Color.WHITE);
+
+        Assert.assertEquals(threatMatrix[6][5], 1);
+        Assert.assertEquals(threatMatrix[6][6], 1);
+        Assert.assertEquals(threatMatrix[6][7], 1);
+        Assert.assertEquals(threatMatrix[6][3], 1);
+        Assert.assertEquals(threatMatrix[6][2], 1);
+        Assert.assertEquals(threatMatrix[6][1], 1);
+        Assert.assertEquals(threatMatrix[6][0], 1);
+        Assert.assertEquals(threatMatrix[7][4], 1);
+        Assert.assertEquals(threatMatrix[5][4], 1);
+        Assert.assertEquals(threatMatrix[4][4], 1);
+        Assert.assertEquals(threatMatrix[3][4], 1);
+        Assert.assertEquals(threatMatrix[2][4], 1);
+        Assert.assertEquals(threatMatrix[1][4], 1);
+        Assert.assertEquals(threatMatrix[0][4], 1);
+        Assert.assertEquals(threatMatrix[7][3], 1);
+        Assert.assertEquals(threatMatrix[5][5], 1);
+        Assert.assertEquals(threatMatrix[4][6], 1);
+        Assert.assertEquals(threatMatrix[3][7], 1);
+        Assert.assertEquals(threatMatrix[7][5], 1);
+        Assert.assertEquals(threatMatrix[5][3], 1);
+        Assert.assertEquals(threatMatrix[4][2], 1);
+        Assert.assertEquals(threatMatrix[3][1], 1);
+        Assert.assertEquals(threatMatrix[2][0], 1);
+        Assert.assertEquals(threatMatrix[4][5], 0);
+
+
+
+
+
+
     }
 
     @Test
@@ -36,9 +119,9 @@ public class TestBoard {
         List<ChessMan> layout = new ArrayList<>();
         layout.add(new ChessMan(Color.BLACK.name(), Pieces.PAWN.name(), 5, 2, 1));
         testBoard.createChessBoard(layout);
-        Assert.assertEquals(testBoard.getPosition(Tile.getTile(2, 5)).getPiece().getStatus(), Status.ALIVE);
-        testBoard.kill(testBoard.getPosition(Tile.getTile(2, 5)).getPiece());
-        Assert.assertEquals(testBoard.getPosition(Tile.getTile(2, 5)).getPiece().getStatus(), Status.KILLED);
+        Assert.assertEquals(testBoard.getPosition(Tile.getTile(5, 2)).getPiece().getStatus(), Status.ALIVE);
+        testBoard.kill(testBoard.getPosition(Tile.getTile(5, 2)).getPiece());
+        Assert.assertEquals(testBoard.getPosition(Tile.getTile(5, 2)).getPiece().getStatus(), Status.KILLED);
 
     }
 
@@ -70,7 +153,8 @@ public class TestBoard {
         List<ChessMan> layout = new ArrayList<>();
         layout.add(new ChessMan(Color.WHITE.name(), Pieces.BISHOP.name(), 3, 4, 2));
         testBoard.createChessBoard(layout);
-        Assert.assertFalse(testBoard.isTileEmpty(Tile.getTile(4,3)));
+        Assert.assertTrue(testBoard.isTileEmpty(Tile.getTile(4,3)));
+        Assert.assertFalse(testBoard.isTileEmpty(Tile.getTile(3,4)));
 
 
     }

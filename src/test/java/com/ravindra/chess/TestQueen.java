@@ -29,6 +29,13 @@ public class TestQueen {
         Assert.assertTrue(new Queen(Status.ALIVE, Color.BLACK).isValidMove(testBoard, new Move(Tile.getTile(4, 4), Tile.getTile(6, 4))));
         Assert.assertTrue(new Queen(Status.ALIVE, Color.BLACK).isValidMove(testBoard, new Move(Tile.getTile(4, 4), Tile.getTile(5, 5))));
 
+        layout.clear();
+        layout.add(new ChessMan(Color.BLACK.name(), Pieces.QUEEN.name(), 0, 0, 5));
+        testBoard.createChessBoard(layout);
+        Assert.assertTrue(new Queen(Status.ALIVE, Color.BLACK).isValidMove(testBoard, new Move(Tile.getTile(0, 0), Tile.getTile(7, 7))));
+        Assert.assertTrue(new Queen(Status.ALIVE, Color.BLACK).isValidMove(testBoard, new Move(Tile.getTile(0, 0), Tile.getTile(6, 6))));
+        Assert.assertTrue(new Queen(Status.ALIVE, Color.BLACK).isValidMove(testBoard, new Move(Tile.getTile(0, 0), Tile.getTile(0, 7))));
+
     }
 
     @Test

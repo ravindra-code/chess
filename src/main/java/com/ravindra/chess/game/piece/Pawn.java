@@ -28,7 +28,7 @@ public class Pawn extends Piece {
             int diffX = move.getDestination().getX() - move.getSource().getX();
             Position position = board.getPieceAtTileLocation(move.getSource());
             if (this.getColor().equals(Color.WHITE)) {
-                if (Math.abs(diffX) == 1) {
+                if (Math.abs(diffX) == 1 && diffY==1) {
                     validMove = isAttackMove(board, move);
                 } else if (diffX == 0) {
                     if (diffY == 2) {
@@ -45,7 +45,7 @@ public class Pawn extends Piece {
                 }
 
             } else {
-                if (Math.abs(diffX) == 1) {
+                if (Math.abs(diffX) == 1 && diffY==-1) {
                     validMove = isAttackMove(board, move);
                 } else if (diffX == 0) {
                     if (diffY == -2) {

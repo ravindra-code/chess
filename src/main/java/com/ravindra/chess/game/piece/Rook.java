@@ -38,7 +38,7 @@ public class Rook extends Piece {
                     move.getSource().getY() == move.getDestination().getY()) {
 
 
-                if (!board.isTileEmpty(move.getDestination()) &&
+                if (!board.isTileEmpty(move.getDestination()) && !board.isTileEmpty(move.getSource()) &&
                         board.getPieceAtTileLocation(move.getDestination()).getPiece().getColor()
                                 ==board.getPieceAtTileLocation(move.getSource()).getPiece().getColor()){
                     return false;
