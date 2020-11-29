@@ -101,9 +101,11 @@ public class King extends Piece {
             if (!result[0]) return result[0];
 
             // Check if some other piece can block the path of blocker and hence removing check.
+            Position kingPosition = board.getPieceAtTileLocation(Tile.getTile(x, y));
             Arrays.stream(Tile.values())
                     .filter(e-> !board.isTileEmpty(e) &&
-                    board.getPieceAtTileLocation(e).getPiece().getColor().name().equals(color.name()))
+                            e.getX()!=x && e.getY()!=y &&
+                    board.getPieceAtTileLocation(e).getPiece().getColor().name().equals(kingPosition.getPiece().getColor().name()))
                     .forEach(t->{
                         Position position = board.getPieceAtTileLocation(t);
                         position.getPiece().getAllPossibleMoves(board, position).stream().forEach(p->{

@@ -58,5 +58,63 @@ public class TestBishop {
         Assert.assertEquals("E5D4C3", builder.toString());
     }
 
+    @Test
+    public void testAllPossibleMoves(){
+        Board testBoard = new Board();
+        List<ChessMan> layout = new ArrayList<>();
+        layout.add(new ChessMan(Color.WHITE.name(), Pieces.BISHOP.name(), 3, 2, 2));
+        testBoard.createChessBoard(layout);
+        Position position = testBoard.getPieceAtTileLocation(Tile.getTile(3,2));
+        List<Tile> moves = position.getPiece().getAllPossibleMoves(testBoard, position);
+        Assert.assertEquals(moves.size(), 11);
+
+        layout.clear();
+        layout.add(new ChessMan(Color.WHITE.name(), Pieces.BISHOP.name(), 3, 2, 2));
+        layout.add(new ChessMan(Color.BLACK.name(), Pieces.ROOK.name(), 4, 3, 2));
+        testBoard.createChessBoard(layout);
+        position = testBoard.getPieceAtTileLocation(Tile.getTile(3,2));
+        moves = position.getPiece().getAllPossibleMoves(testBoard, position);
+        Assert.assertEquals(moves.size(), 8);
+
+        layout.clear();
+        layout.add(new ChessMan(Color.WHITE.name(), Pieces.BISHOP.name(), 3, 2, 2));
+        layout.add(new ChessMan(Color.BLACK.name(), Pieces.ROOK.name(), 5, 4, 2));
+        testBoard.createChessBoard(layout);
+        position = testBoard.getPieceAtTileLocation(Tile.getTile(3,2));
+        moves = position.getPiece().getAllPossibleMoves(testBoard, position);
+        Assert.assertEquals(moves.size(), 9);
+
+        layout.clear();
+        layout.add(new ChessMan(Color.WHITE.name(), Pieces.BISHOP.name(), 3, 2, 2));
+        layout.add(new ChessMan(Color.BLACK.name(), Pieces.ROOK.name(), 5, 4, 2));
+        layout.add(new ChessMan(Color.BLACK.name(), Pieces.ROOK.name(), 2, 1, 2));
+        testBoard.createChessBoard(layout);
+        position = testBoard.getPieceAtTileLocation(Tile.getTile(3,2));
+        moves = position.getPiece().getAllPossibleMoves(testBoard, position);
+        Assert.assertEquals(moves.size(), 8);
+
+        layout.clear();
+        layout.add(new ChessMan(Color.WHITE.name(), Pieces.BISHOP.name(), 3, 2, 2));
+        layout.add(new ChessMan(Color.BLACK.name(), Pieces.ROOK.name(), 5, 4, 2));
+        layout.add(new ChessMan(Color.BLACK.name(), Pieces.ROOK.name(), 2, 1, 2));
+        layout.add(new ChessMan(Color.BLACK.name(), Pieces.BISHOP.name(), 4, 1, 2));
+        layout.add(new ChessMan(Color.BLACK.name(), Pieces.BISHOP.name(), 2, 3, 2));
+        testBoard.createChessBoard(layout);
+        position = testBoard.getPieceAtTileLocation(Tile.getTile(3,2));
+        moves = position.getPiece().getAllPossibleMoves(testBoard, position);
+        Assert.assertEquals(moves.size(), 5);
+
+        layout.clear();
+        layout.add(new ChessMan(Color.WHITE.name(), Pieces.BISHOP.name(), 3, 2, 2));
+        layout.add(new ChessMan(Color.WHITE.name(), Pieces.ROOK.name(), 5, 4, 2));
+        layout.add(new ChessMan(Color.WHITE.name(), Pieces.ROOK.name(), 2, 1, 2));
+        layout.add(new ChessMan(Color.WHITE.name(), Pieces.BISHOP.name(), 4, 1, 2));
+        layout.add(new ChessMan(Color.WHITE.name(), Pieces.PAWN.name(), 2, 3, 2));
+        testBoard.createChessBoard(layout);
+        position = testBoard.getPieceAtTileLocation(Tile.getTile(3,2));
+        moves = position.getPiece().getAllPossibleMoves(testBoard, position);
+        Assert.assertEquals(moves.size(), 1);
+
+    }
 
 }
